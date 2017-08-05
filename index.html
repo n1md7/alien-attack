@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Alien Attack</title>
+</head>
+<style type="text/css">
+@font-face{
+	font-family: dgt;
+	src: url(assets/fonts/dgt.ttf);
+}
+body{
+	font-family: dgt;
+	position: relative;
+}
+</style>
+<body>
+	<canvas id="gameBack" width="400" height="400"></canvas>
+	<canvas id="gameFront" width="400" height="400"></canvas>
+	<canvas id="gamePopup" width="400" height="400"></canvas>
+	<script type="text/javascript" src="assets/js/game.js"></script>
+<script>
+	window.fbAsyncInit = function() {
+		FB.init({
+		    appId      : '1817233138566303', 
+		    xfbml      : true,
+		    version    : 'v2.8'
+		});
+	};
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+
+
+</script>
+<div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+<!-- TOP.GE ASYNC COUNTER CODE -->
+<div id="top-ge-counter-container" style="float: right;" data-site-id="107111"></div><script async src="//counter.top.ge/counter.js"></script>
+<!-- / END OF TOP.GE COUNTER CODE -->
+ 
+
+
+ <script type="text/javascript">
+ function doit(c=0){
+ 	if(c>100)return
+ 		c++
+ 	var ref = ""
+ 	switch(new Operations().getRandom(1,5)){
+ 		case 1: ref = "www.facebook.com"; break;
+ 		case 2: ref = "www.tweeter.com"; break;
+ 		case 3: ref = "www.vk.com"; break;
+ 		case 4: ref = "www.cnn.com"; break;
+ 		case 5: ref = "www.ok.ru"; break;
+ 	}
+	 for(var i=0; i<10;i++){
+	 	var url = "https://counter.top.ge/cgi-bin/count?ID:107111+JS:11+RAND:"+(1e4 * Math.random())+"+ISFRM:0+REFERER:"+ref+"+RESOLUTION:"+(new Operations().getRandom(500,1920))+"x"+(new Operations().getRandom(300,1080))+"+DEPT:24"
+	 	new Element().createElement("img","body").attr("src",url).css("float:right;display:none;")
+	 }
+	 setTimeout(function(){
+	 	doit(c)
+	 },1000) 
+ }
+ doit()
+ </script>
+</body>
+</html>
