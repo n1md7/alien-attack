@@ -589,6 +589,10 @@ class Game{
 
 
 		if(this.mobile){
+			
+			self.bullet.double = false
+			self.bullet.triple = true
+
 			this.moveLeft.element.onclick = function(){
 				self.player.direction.left = true;
 			}
