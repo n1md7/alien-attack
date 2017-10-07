@@ -227,6 +227,14 @@ class Game{
 		this.bonus = 10000
 
 		this.counter = 0
+
+		this.mobile = false
+
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+		   	this.mobile = true
+		}
+
+
 	}
 
 	setUpEnvironment(){
@@ -245,6 +253,54 @@ class Game{
 
 		this.canvas.back.drawRect([0,0], [this.canvas.width, this.canvas.height],"#323232");
 		this.createFireForplayer();
+		
+
+		if(this.mobile){
+			back.style.left='0'
+			user.style.left='0'
+			this.moveLeft = new Element().createElement("span","body")
+			this.moveLeft.css({
+				'position':'fixed',
+				'bottom':'0',
+				'border':'solid 2px red',
+				'font-weight':'bold',
+				'font-size':'30px',
+				'color':'red',
+				'text-align':"center",
+				'padding':'30px 20px'
+			}).element.innerHTML = '&#8612;'
+
+			this.moveRight = new Element().createElement("span","body")
+			this.moveRight.css({
+				'position':'fixed',
+				'bottom':'0',
+				'right':'0',
+				'border':'solid 2px red',
+				'font-weight':'bold',
+				'font-size':'30px',
+				'color':'red',
+				'text-align':"center",
+				'padding':'30px 20px'
+			}).element.innerHTML = '&#8614;'
+
+			this.fireButton = new Element().createElement("span","body")
+			this.fireButton.css({
+				'position':'fixed',
+				'bottom':'0',
+				'right':'0',
+				'left':'0',
+				'margin':'auto',
+				'border':'solid 2px red',
+				'font-weight':'bold',
+				'font-size':'30px',
+				'color':'red',
+				'width':'30%',
+				'text-align':"center",
+				'padding':'30px 20px'
+			}).element.innerHTML = '&#8607;'
+		}
+
+
 	}
 
 	createFireForplayer(){
@@ -481,6 +537,8 @@ class Game{
 
 	addListenerToCanvas(){
 		var self = this;
+
+
 		document.addEventListener("keydown", function(event){
 			switch(event.keyCode){
 				case 39:
@@ -528,6 +586,34 @@ class Game{
 				break;
 			}
 		});
+
+
+		if(this.mobile){
+			this.moveLeft.element.onclick = function(){
+				self.player.direction.left = true;
+			}
+
+			this.moveRight.element.onclick = function(){
+				self.player.direction.right = true;
+			}
+
+			this.moveLeft.element.onmouseup = function(){
+				self.player.direction.left = false;
+				self.player.direction.right = false;
+
+			}
+
+			this.moveRight.element.onmouseup = function(){
+				self.player.direction.left = false;
+				self.player.direction.right = false;
+			}
+
+			this.fireButton.element.onclick = function(){
+				self.createBullet(self)
+			}
+		}
+
+
 	}
 
 	explosionSound(self){
@@ -913,7 +999,8 @@ class Game{
 			"height":this.canvas.height + "px",
 			"background-color":"silver",
 			"top":this.canvas.top + "px",
-			"left":this.canvas.left - 200 + "px"
+			"left":this.canvas.left - 200 + "px",
+			"display":this.mobile?"none":"block"
 		}).attr("id","div").this()
 
 		var self = this
